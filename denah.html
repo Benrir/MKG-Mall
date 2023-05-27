@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="denah.css">
+    <link rel="stylesheet" href="navbar-footer.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;
+                1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+    <div class="navbar">
+        <!-- logo -->
+        <div class="logo">
+        <a href="home.html"><img src="images/summarecon logo.jpg" alt="summarecon logo"></a>
+        </div>
+        <!-- menu -->
+        <div class="menu">
+            <ul>
+                <li><a href="informasi.html">Informasi</a></li>
+                <li><a href="akses.html">Akses</a></li>
+                <li><a href="denah.html"><u>Denah</u></a></li>
+            </ul>
+        </div>
+    </div>
+    
+    <div class="denah">
+        <div class="denah_button">
+            <input class="btn" type="button" value="MKG1" onclick="MKG(1)">
+            <input class="btn" type="button" value="MKG2" onclick="MKG(2)">
+            <input class="btn" type="button" value="MKG3" onclick="MKG(3)">
+            <input class="btn" type="button" value="MKG5" onclick="MKG(5)">
+            <input class="btn1" type="button" value="GADING WALK" onclick="MKG(6)">
+        </div>
+        <select id="nuts" class="lantai_button" onchange="lantai(this)">
+            <option value="0">Lantai Dasar</option>
+            <option value="1">Lantai 1</option>
+            <option value="2">Lantai 2</option>
+        </select>
+    </div>
+    
+    <div class="gambar"><img id="image" src="images/1-Lantai_0.jpg" alt="1-Lantai_0"></div>
+
+    <div class="footer">
+        <a href="form.html">
+            <p>CONTACT US</p>
+        </a>
+        <div class="footer_menu">
+            <ul>
+                <li><a href="https://www.facebook.com/MKGLaPiazza/"><img src="images/facebook.jpg" alt="facebook"></a></li>
+                <li><a href="https://www.instagram.com/mkglapiazza/"><img src="images/ig.jpg" alt="ig"></a></li>
+                <li><a href="https://twitter.com/mkglapiazza"><img src="images/twiter.jpg" alt="twiter"></a></li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+<script>
+
+    let currDenah = 1;
+    let currLantai = 0;
+
+    let options = [];
+    let dasar = document.createElement("option");
+    dasar.value = 0;
+    dasar.innerText = "Lantai Dasar";
+
+    let lt1 = document.createElement("option");
+    lt1.value = 1;
+    lt1.innerText = "Lantai 1";
+
+    let lt2 = document.createElement("option");
+    lt2.value = 2;
+    lt2.innerText = "Lantai 2";
+
+    let lt3 = document.createElement("option");
+    lt3.value = 3;
+    lt3.innerText = "Lantai 3";
+
+    // document.getElementById("nuts").appendChild(dasar);
+
+    options.push(dasar);
+    options.push(lt1);
+    options.push(lt2);
+    options.push(lt3);
+
+    function change(){
+        var img = document.getElementById("image");
+        img.src="images/"+currDenah+"-Lantai_"+currLantai+".jpg";
+    }
+
+    function MKG(id){
+        document.getElementById("nuts").innerHTML = "";
+        switch(id){
+            case 1:
+                options.slice(0,3).forEach(o=>{
+                    document.getElementById("nuts").appendChild(o);
+                })
+                break;
+            case 2:
+                options.slice(0,4).forEach(o=>{
+                    document.getElementById("nuts").appendChild(o);
+                })
+                break;
+            case 3:
+                options.slice(0,4).forEach(o=>{
+                    document.getElementById("nuts").appendChild(o);
+                })
+                break;
+            case 5:
+                options.slice(0,4).forEach(o=>{
+                    document.getElementById("nuts").appendChild(o);
+                })
+                break;
+        }
+        if(id == 6){
+            currLantai = 0;
+            document.getElementById("nuts").classList.add("hidden");
+        }
+        else{
+            document.getElementById("nuts").classList.remove("hidden");
+        }
+        currDenah = id;
+        change();
+    }
+    
+    function lantai(opt){
+        currLantai = opt.value;
+        change();
+    }
+
+</script>
+
+</html>
